@@ -60,6 +60,11 @@ export interface HistoricalIndexReq {
   end_time?: number;
 }
 
+export interface HistoricalPositionReq {
+  accounts: string[];
+  endTime: number;
+}
+
 export interface DepositAddressReq {
   coin: string;
   method?: string;

@@ -17,7 +17,8 @@
     "build:watch": "npm run clean && tsc --watch",
     "pack": "webpack --config webpack/webpack.config.js",
     "prepublish": "npm run build:clean",
-    "betapublish": "npm publish --tag beta"
+    "betapublish": "npm publish --tag beta",
+    "examples": "ts-node ./examples/newFeatures.ts"
   },
   "author": "Tiago Siebler (https://github.com/tiagosiebler)",
   "contributors": [],
@@ -34,6 +35,8 @@
     "source-map-loader": "^2.0.0",
     "ts-jest": "^27.0.3",
     "ts-loader": "^8.0.11",
+    "ts-node": "^10.8.2",
+    "tsc-node": "^0.0.3",
     "typescript": "^4.0.5",
     "webpack": "^5.4.0",
     "webpack-bundle-analyzer": "^4.1.0",

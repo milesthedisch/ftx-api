@@ -18,8 +18,6 @@ import {
   FundingPaymentsReq,
   FuturesCoin,
   FuturesPosition,
-  HistoricalIndexReq,
-  HistoricalPricesReq,
   ModifyClientIdOrderReq,
   ModifyOrderReq,
   ModifyTriggerOrderReq,
@@ -30,6 +28,9 @@ import {
   NewTriggerOrderReq,
   NftAuctionEditReq,
   NftAuctionReq,
+  HistoricalIndexReq,
+  HistoricalPricesReq,
+  HistoricalPositionReq,
   NftBidReq,
   OpenTriggerOrdersReq,
   OrderbookReq,
@@ -50,7 +51,7 @@ export class RestClient {
   /**
    * @public Creates an instance of the inverse REST API client.
    *
-   * @param {string} key - your API key
+params: HistoricalPositionReq   * @param {string} key - your API key
    * @param {string} secret - your API secret
    * @param {RestClientOptions} [restClientOptions={}] options to configure REST API connectivity
    * @param {AxiosRequestConfig} [requestOptions={}] HTTP networking options for axios
@@ -96,10 +97,10 @@ export class RestClient {
   acceptDust(quoteId: string): GenericAPIResponse {
     return this.requestWrapper.post(`dust/quotes/${quoteId}/accept`);
   }
-  
+
   /**
    * Returns a list of historical USD balance snapshots taken every 4 hours.
-   * 
+   *
    * Note: undocumented
    * @param limit Number of days
    */
@@ -241,6 +242,19 @@ export class RestClient {
     return this.requestWrapper.post('account/leverage', { leverage });
   }
 
+  getAllHistoricalBalances(): GenericAPIResponse {
+    return this.requestWrapper.get('historical_balances/requests');
+  }
+
+  getHistoricalBalancesSnapshot(
+    params: HistoricalPositionReq
+  ): GenericAPIResponse {
+    return this.requestWrapper.post('historical_balances/requests', params);
+  }
+
+  getHistoricalBalancesOf(id: number): GenericAPIResponse {
+    return this.requestWrapper.get(`historical_balances/requests/${id}`);
+  }
   /**
    *
    * Wallet Endpoints
